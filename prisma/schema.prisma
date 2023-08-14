@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model banner {
+  banner_id Int     @id @default(autoincrement())
+  movie_id  Int
+  image     String? @db.VarChar(250)
+  movie     movie   @relation(fields: [movie_id], references: [movie_id], onDelete: NoAction, onUpdate: NoAction, map: "banner_ibfk")
+
+  @@index([movie_id], map: "banner_ibfk")
+}
+
+model cinema {
+  cinema_id         Int            @id @default(autoincrement())
+  cinema_name       String?        @db.VarChar(250)
+  address           String?        @db.VarChar(250)
+  cinema_systems_id Int
+  cinema_systems    cinema_systems @relation(fields: [cinema_systems_id], references: [cinema_systems_id], onDelete: NoAction, onUpdate: NoAction, map: "cinema_ibfk")
+  screen            screen[]
+
+  @@index([cinema_systems_id], map: "cinema_ibfk")
+}
+
+model cinema_systems {
+  cinema_systems_id   Int      @id @default(autoincrement())
+  cinema_systems_name String?  @db.VarChar(250)
+  logo                String?  @db.VarChar(100)
+  cinema              cinema[]
+}
+
+model movie {
+  movie_id     Int        @id @default(autoincrement())
+  name         String?    @db.VarChar(100)
+  trailer      String?    @db.VarChar(100)
+  image        String?    @db.VarChar(250)
+  description  String?    @db.VarChar(250)
+  release_date DateTime   @db.Date
+  rating       Int
+  hot          Boolean
+  now_showing  Boolean
+  coming_soon  Boolean
+  banner       banner[]
+  schedule     schedule[]
+}
+
+model schedule {
+  schedule_id Int       @id @default(autoincrement())
+  screen_id   Int
+  movie_id    Int
+  showtime    DateTime? @db.Date
+  price       Int?
+  screen      screen    @relation(fields: [screen_id], references: [screen_id], onDelete: NoAction, onUpdate: NoAction, map: "schedule_ibfk_1")
+  movie       movie     @relation(fields: [movie_id], references: [movie_id], onDelete: NoAction, onUpdate: NoAction, map: "schedule_ibfk_2")
+  ticket      ticket[]
+
+  @@index([screen_id], map: "schedule_ibfk_1")
+  @@index([movie_id], map: "schedule_ibfk_2")
+}
+
+model screen {
+  screen_id   Int        @id @default(autoincrement())
+  screen_name String?    @db.VarChar(250)
+  cinema_id   Int
+  schedule    schedule[]
+  cinema      cinema     @relation(fields: [cinema_id], references: [cinema_id], onDelete: NoAction, onUpdate: NoAction, map: "screen_ibfk")
+  seat        seat[]
+
+  @@index([cinema_id], map: "screen_ibfk")
+}
+
+model seat {
+  seat_id   Int     @id @default(autoincrement())
+  seat_name String? @db.VarChar(100)
+  seat_type String? @db.VarChar(100)
+  screen_id Int
+  screen    screen  @relation(fields: [screen_id], references: [screen_id], onDelete: NoAction, onUpdate: NoAction, map: "seat_ibfk")
+
+  @@index([screen_id], map: "seat_ibfk")
+}
+
+model ticket {
+  user_id     Int
+  schedule_id Int
+  seat_id     Int
+  user        user     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_1")
+  schedule    schedule @relation(fields: [schedule_id], references: [schedule_id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_2")
+
+  @@id([user_id, schedule_id])
+  @@index([schedule_id], map: "ticket_ibfk_2")
+}
+
+model user {
+  user_id   Int      @id @default(autoincrement())
+  full_name String?  @db.VarChar(250)
+  email     String?  @db.VarChar(100)
+  phone     String?  @db.VarChar(20)
+  pass_word String?  @db.VarChar(250)
+  user_type String?  @db.VarChar(100)
+  ticket    ticket[]
+}
