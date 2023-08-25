@@ -75,11 +75,12 @@ model screen {
 }
 
 model seat {
-  seat_id   Int     @id @default(autoincrement())
-  seat_name String? @db.VarChar(100)
-  seat_type String? @db.VarChar(100)
+  seat_id   Int      @id @default(autoincrement())
+  seat_name String?  @db.VarChar(100)
+  seat_type String?  @db.VarChar(100)
   screen_id Int
-  screen    screen  @relation(fields: [screen_id], references: [screen_id], onDelete: NoAction, onUpdate: NoAction, map: "seat_ibfk")
+  screen    screen   @relation(fields: [screen_id], references: [screen_id], onDelete: NoAction, onUpdate: NoAction, map: "seat_ibfk")
+  ticket    ticket[]
 
   @@index([screen_id], map: "seat_ibfk")
 }
@@ -90,9 +91,11 @@ model ticket {
   seat_id     Int
   user        user     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_1")
   schedule    schedule @relation(fields: [schedule_id], references: [schedule_id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_2")
+  seat        seat     @relation(fields: [seat_id], references: [seat_id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_3")
 
-  @@id([user_id, schedule_id])
-  @@index([schedule_id], map: "ticket_ibfk_2")
+  @@id([schedule_id, seat_id])
+  @@index([user_id], map: "ticket_ibfk_1")
+  @@index([seat_id], map: "ticket_ibfk_3")
 }
 
 model user {
@@ -101,6 +104,6 @@ model user {
   email     String?  @db.VarChar(100)
   phone     String?  @db.VarChar(20)
   pass_word String?  @db.VarChar(250)
-  user_type String?  @db.VarChar(100)
+  user_type String?  @default("Regular") @db.VarChar(100)
   ticket    ticket[]
 }

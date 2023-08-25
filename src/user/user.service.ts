@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class UserService {
   private prisma: PrismaClient;
-  constructor() {
+  constructor(private readonly jwtService: JwtService) {
     this.prisma = new PrismaClient();
   }
 

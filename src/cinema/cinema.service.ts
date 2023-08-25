@@ -42,7 +42,7 @@ export class CinemaService {
         cinema_systems_id,
       },
       select: {
-        cinema_systems_id: true,
+        cinema_id: true,
         cinema_name: true,
         address: true,
         screen: true,
@@ -52,62 +52,110 @@ export class CinemaService {
   }
 
   // Get schedule by Cinema
-  async getScheduleByCinemaId(cinema_systems_id: number) {
-    const cinemaSystems = await this.prisma.cinema_systems.findMany({
+  async getScheduleByCinemaSystemsId(cinema_systems_id: number) {
+    const checkSchedule = await this.prisma.schedule.findMany({
       where: {
-        cinema_systems_id,
+        screen: {
+          cinema: {
+            cinema_systems_id,
+          },
+        },
       },
       include: {
-        cinema: {
+        screen: {
           include: {
-            screen: {
+            cinema: {
               include: {
-                schedule: {
-                  include: {
-                    movie: {
-                      select: {
-                        movie_id: true,
-                        name: true,
-                        image: true,
-                        hot: true,
-                        now_showing: true,
-                        coming_soon: true,
-                      },
-                    },
-                  },
-                },
+                cinema_systems: true,
               },
             },
           },
         },
+        movie: true,
       },
     });
-  
-    if (!cinemaSystems || cinemaSystems.length === 0) {
-      return { statusCode: 404, message: 'Cinema systems not exist' };
-    }
-  
-    const content = cinemaSystems.map(cinemaSystem => ({
-      lstCinema: cinemaSystem.cinema.map(cinema => ({
-        danhSachPhim: cinema.screen.map(screen => ({
-          // lstLichChieuTheoPhim: screen.schedule.map(schedule => ({
-          //   maLichChieu: schedule.maLichChieu,
-          //   maRap: schedule.maRap,
-          //   tenRap: schedule.tenRap,
-          //   ngayChieuGioChieu: schedule.ngayChieuGioChieu,
-          //   giaVe: schedule.giaVe,
-          // })),
-          // maPhim: screen.movie.maPhim,
-          // tenPhim: screen.movie.tenPhim,
-          // hinhAnh: screen.movie.hinhAnh,
-          // hot: screen.movie.hot,
-          // dangChieu: screen.movie.dangChieu,
-          // sapChieu: screen.movie.sapChieu,
-        })),
-      })),
+    const content = checkSchedule.map((schedule) => ({
+      cinemaLst: [
+        {
+          movieLst: [
+            {
+              movieSchedule: [
+                {
+                  scheduleId: schedule.schedule_id,
+                  screenId: schedule.screen_id,
+                  screenName: schedule.screen.screen_name,
+                  showtime: schedule.showtime,
+                  price: schedule.price,
+                },
+              ],
+              movieId: schedule.movie.movie_id,
+              movieName: schedule.movie.name,
+              image: schedule.movie.image,
+              hot: schedule.movie.hot,
+              nowShowing: schedule.movie.now_showing,
+              comingSoon: schedule.movie.coming_soon,
+            },
+          ],
+          cinemaId: schedule.screen.cinema.cinema_id,
+          cinemaName: schedule.screen.cinema.cinema_name,
+          Address: schedule.screen.cinema.address,
+        },
+      ],
+      cinemaSystemID: schedule.screen.cinema.cinema_systems.cinema_systems_id,
+      cinemaSystemName: schedule.screen.cinema.cinema_systems.cinema_systems_name,
+      cinemaSystemLogo: schedule.screen.cinema.cinema_systems.logo,
     }));
-  
-    return { statusCode: 200, message: 'Xử lý thành công!', content };
+
+    return {success: true, message: "success", content}
   }
-  
+
+  // Get Schedule By Movie ID
+  async getScheduleByMovieId(movie_id: number){
+    const checkSchedule = await this.prisma.schedule.findMany({
+      where: {
+        movie_id,
+      },
+      include: {
+        screen: {
+          include: {
+            cinema: {
+              include: {
+                cinema_systems: true
+              }
+            }
+          }
+        },
+        movie: true,
+      },
+    });
+
+    const content = checkSchedule.map(schedule => ({
+      cinemaSystem: [{
+        cinemaLst: [{
+          schedule: [{
+            scheduleId: schedule.schedule_id,
+            screenId: schedule.screen.screen_id,
+            screenName: schedule.screen.screen_name,
+            showtime: schedule.showtime,
+            price: schedule.price,
+          }],
+          cinemaId: schedule.screen.cinema.cinema_id,
+          cinemaName: schedule.screen.cinema.cinema_name,
+          address: schedule.screen.cinema.address,
+        }],
+        cinemaSystemId: schedule.screen.cinema.cinema_systems.cinema_systems_id,
+        cinemaSystemName: schedule.screen.cinema.cinema_systems.cinema_systems_name,
+        logo: schedule.screen.cinema.cinema_systems.logo,
+      }],
+      movieId: schedule.movie.movie_id,
+      movieName: schedule.movie.name,
+      trailer: schedule.movie.trailer,
+      image: schedule.movie.image,
+      description: schedule.movie.description,
+      hot: schedule.movie.hot,
+      nowShowing: schedule.movie.now_showing,
+
+    }))
+  }
+
 }
