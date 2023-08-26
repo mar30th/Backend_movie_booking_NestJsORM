@@ -17,33 +17,7 @@ export class TicketService {
     this.prisma = new PrismaClient();
   }
 
-  // POST book ticket (1)
-  // async postTicket(access_token: string, ticket: CreateTicketDto){
-  //   const {schedule_id, bookingList} = ticket;
-  //   const decodedToken = this.jwtService.decode(
-  //     access_token.replace('Bearer ', ''),
-  //   ) as any;
-  //   const user_id = decodedToken?.data?.user_id;
-  //   const createdTicket: Ticket[] = [];
-
-  //   for (const booking of bookingList){
-  //     const {seat_id, price} = booking;
-
-  //     const newTicket = await this.prisma.ticket.create({
-  //       data: {
-  //         user_id,
-  //         schedule_id,
-  //         seat_id,
-  //       }
-  //     });
-
-  //     createdTicket.push(newTicket);
-  //   }
-
-  //   return createdTicket;
-  // }
-
-  // POST book ticket (2)
+  // POST book ticket
   async postTicket(access_token: string, ticket: CreateTicketDto) {
     const { schedule_id, bookingList } = ticket;
     const decodedToken = this.jwtService.decode(

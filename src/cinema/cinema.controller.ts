@@ -22,8 +22,13 @@ export class CinemaController {
     return this.cinemaService.getCinemaBySystems(cinema_systems_id)
   }
 
-  @Get('test/:cinema_systems_id')
-  async test(@Param('cinema_systems_id', ParseIntPipe) cinema_systems_id: number){
+  @Get('schedule/cinema-systems_id/:cinema_systems_id')
+  async getScheduleByCinemaSystemsId(@Param('cinema_systems_id', ParseIntPipe) cinema_systems_id: number){
     return this.cinemaService.getScheduleByCinemaSystemsId(cinema_systems_id)
+  }
+
+  @Get('schedule/movie-id/:movie_id')
+  async getScheduleByMovieId(@Param('movie_id', ParseIntPipe) movie_id: number){
+    return this.cinemaService.getScheduleByMovieId(movie_id)
   }
 }

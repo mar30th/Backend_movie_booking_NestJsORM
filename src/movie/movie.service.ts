@@ -42,8 +42,9 @@ export class MovieService {
   }
 
   // Post add movie
-  async postMovie(movie: CreateMovieDto) {
+  async postMovie(movie: CreateMovieDto, imgFile: Express.Multer.File) {
     let { ...newMovie } = movie;
+    let image = '/public/movie.img/' + imgFile.filename
     const checkMovie = await this.prisma.movie.findFirst({
       where: {
         name: newMovie.name,
@@ -54,7 +55,7 @@ export class MovieService {
         data: {
           name: newMovie.name,
           trailer: newMovie.trailer,
-          image: newMovie.image,
+          image,
           description: newMovie.description,
           release_date: newMovie.release_date,
           rating: newMovie.rating,

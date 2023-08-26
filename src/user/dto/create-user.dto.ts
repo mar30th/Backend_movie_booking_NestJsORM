@@ -3,6 +3,7 @@ export class CreateUserDto {
     email: string;
     phone: string;
     pass_word: string;
+    user_type?: string;
 }
 
 export class SignInDto {

@@ -11,7 +11,7 @@ export class CinemaService {
     this.prisma = new PrismaClient();
   }
 
-  // Get Cinema Systems
+  // Get Cinema Systems Info
   async getCinemaSystemsList() {
     const data = await this.prisma.cinema_systems.findMany();
     return { success: true, message: 'success', data };
@@ -35,7 +35,7 @@ export class CinemaService {
     };
   }
 
-  // Get Cinema by Cinema Systems
+  // Get Cinema by Cinema Systems Id
   async getCinemaBySystems(cinema_systems_id: number) {
     const data = await this.prisma.cinema.findMany({
       where: {
@@ -102,15 +102,16 @@ export class CinemaService {
         },
       ],
       cinemaSystemID: schedule.screen.cinema.cinema_systems.cinema_systems_id,
-      cinemaSystemName: schedule.screen.cinema.cinema_systems.cinema_systems_name,
+      cinemaSystemName:
+        schedule.screen.cinema.cinema_systems.cinema_systems_name,
       cinemaSystemLogo: schedule.screen.cinema.cinema_systems.logo,
     }));
 
-    return {success: true, message: "success", content}
+    return { success: true, message: 'success', content };
   }
 
   // Get Schedule By Movie ID
-  async getScheduleByMovieId(movie_id: number){
+  async getScheduleByMovieId(movie_id: number) {
     const checkSchedule = await this.prisma.schedule.findMany({
       where: {
         movie_id,
@@ -120,42 +121,52 @@ export class CinemaService {
           include: {
             cinema: {
               include: {
-                cinema_systems: true
-              }
-            }
-          }
+                cinema_systems: true,
+              },
+            },
+          },
         },
         movie: true,
       },
     });
 
-    const content = checkSchedule.map(schedule => ({
-      cinemaSystem: [{
-        cinemaLst: [{
-          schedule: [{
-            scheduleId: schedule.schedule_id,
-            screenId: schedule.screen.screen_id,
-            screenName: schedule.screen.screen_name,
-            showtime: schedule.showtime,
-            price: schedule.price,
-          }],
-          cinemaId: schedule.screen.cinema.cinema_id,
-          cinemaName: schedule.screen.cinema.cinema_name,
-          address: schedule.screen.cinema.address,
-        }],
+    const movieInfo = await this.prisma.movie.findFirst({
+      where: {
+        movie_id,
+      },
+    });
+
+    const cinemaSystem = checkSchedule.map((schedule) => {
+      const scheduleData = {
+        cinemaLst: [
+          {
+            schedule: [
+              {
+                scheduleId: schedule.schedule_id,
+                screenId: schedule.screen.screen_id,
+                screenName: schedule.screen.screen_name,
+                showtime: schedule.showtime,
+                price: schedule.price,
+              },
+            ],
+            cinemaId: schedule.screen.cinema.cinema_id,
+            cinemaName: schedule.screen.cinema.cinema_name,
+            address: schedule.screen.cinema.address,
+          },
+        ],
         cinemaSystemId: schedule.screen.cinema.cinema_systems.cinema_systems_id,
-        cinemaSystemName: schedule.screen.cinema.cinema_systems.cinema_systems_name,
+        cinemaSystemName:
+          schedule.screen.cinema.cinema_systems.cinema_systems_name,
         logo: schedule.screen.cinema.cinema_systems.logo,
-      }],
-      movieId: schedule.movie.movie_id,
-      movieName: schedule.movie.name,
-      trailer: schedule.movie.trailer,
-      image: schedule.movie.image,
-      description: schedule.movie.description,
-      hot: schedule.movie.hot,
-      nowShowing: schedule.movie.now_showing,
-
-    }))
+      };
+      return {
+        ...scheduleData,
+      };
+    });
+    return {
+      success: true,
+      message: 'success',
+      content: { cinemaSystem, movieInfo },
+    };
   }
-
 }
