@@ -10,3 +10,8 @@ export class SignInDto {
     email: string;
     pass_word: string
 }
+
+export class DeleteUserDto {
+    user_id: number;
+    email: string;
+}

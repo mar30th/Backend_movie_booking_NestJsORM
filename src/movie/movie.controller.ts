@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UseInterceptors, UploadedFile, Headers } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { diskStorage } from 'multer';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -13,6 +13,11 @@ export class MovieController {
 @Get('/banner')
 async getBanner() {
   return this.movieService.getBanner();
+}
+
+@Get('/movie-list')
+async getMovieLst() {
+  return this.movieService.getMovieList();
 }
 
 @Get('/name/:keyword?')
@@ -33,17 +38,19 @@ async getMovieById(@Param('movie_id', ParseIntPipe) movie_id: number) {
   })
 }))
 @Post('/post-movie')
-async postMovie(@Body() movie: CreateMovieDto, @UploadedFile() imgFile: Express.Multer.File){
-  return this.movieService.postMovie(movie, imgFile)
+async postMovie(@Headers('access_token') access_token: string, @Body() movie: CreateMovieDto, @UploadedFile() imgFile: Express.Multer.File){
+  typeof movie.rating === 'string'? movie.rating = parseInt(movie.rating) : movie.rating
+  
+  return this.movieService.postMovie(access_token, movie, imgFile)
 }
 
 @Post('/update-movie')
-async postUpdateMovie(@Body() dataUpdate: UpdateMovieDto) {
-  return this.movieService.postUpdateMovie(dataUpdate)
+async postUpdateMovie(@Headers('access_token') access_token: string, @Body() dataUpdate: UpdateMovieDto) {
+  return this.movieService.postUpdateMovie(access_token, dataUpdate)
 }
 
 @Delete('/delete-movie/:movie_id')
-async deleteMovie(@Param('movie_id', ParseIntPipe) movie_id: number){
-  return this.movieService.deleteMovie(movie_id);
+async deleteMovie(@Headers('access_token') access_token: string, @Param('movie_id', ParseIntPipe) movie_id: number){
+  return this.movieService.deleteMovie(access_token, movie_id);
 }
 }
