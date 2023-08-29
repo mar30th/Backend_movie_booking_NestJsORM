@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { CreateUserDto, SignInDto } from 'src/user/dto/create-user.dto';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
@@ -14,7 +12,6 @@ export class AuthService {
     private readonly configService: ConfigService,
   ) {}
   prisma = new PrismaClient();
-
   async signUp(newUser: CreateUserDto) {
     let { full_name, email, pass_word, phone } = newUser;
     let checkUser = await this.prisma.user.findMany({

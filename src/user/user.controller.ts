@@ -1,18 +1,20 @@
 import { Body, Controller, Delete, Get, Headers, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto, DeleteUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UserService } from './user.service';
 
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('user-type')
+  @Get('get-user-type')
   getUser(@Headers('access_token') access_token: string){
     return this.userService.getUserType(access_token);
   }
 
-  @Get('user-list')
+  @Get('get-user-list')
   getUserList(@Headers ('access_token') access_token: string) {
     return this.userService.getUser(access_token);
   }

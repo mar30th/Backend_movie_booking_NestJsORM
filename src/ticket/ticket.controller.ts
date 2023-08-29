@@ -10,22 +10,23 @@ import {
   Headers,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateScheduleDto, CreateTicketDto } from './dto/create-ticket.dto';
 import { TicketService } from './ticket.service';
 // import { CreateTicketDto } from './dto/create-ticket.dto';
 // import { UpdateTicketDto } from './dto/update-ticket.dto';
 
+@ApiTags('Ticket')
 @Controller('ticket')
 export class TicketController {
   constructor(
     private readonly ticketService: TicketService,
-    private readonly jwtService: JwtService,
   ) {}
 
   @Post('booking')
   async postTicket(
     @Headers('access_token') access_token: string,
-    @Body('ticket') ticket: CreateTicketDto,
+    @Body() ticket: CreateTicketDto,
   ) {
     return await this.ticketService.postTicket(access_token, ticket);
   }

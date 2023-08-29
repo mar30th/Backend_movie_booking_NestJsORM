@@ -1,4 +1,5 @@
 export class Ticket {
-    // seat_id: number;
-    // price: number;
+    user_id: number;
+    schedule_id: number;
+    seat_id: number;
 }
