@@ -9,7 +9,7 @@ async function bootstrap() {
   app.use(express.static('.'));
 
   // Swagger set up
-  const config = new DocumentBuilder().setTitle('MovieBooking DB').setVersion('1.0').setDescription('Swagger Movie Booking').addBearerAuth().build();
+  const config = new DocumentBuilder().setTitle('MovieBooking DB').setVersion('1.0').setDescription('Swagger Movie Booking').build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/swagger', app, document);
 

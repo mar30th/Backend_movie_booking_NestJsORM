@@ -210,6 +210,9 @@ export class UserService {
           },
         },
       });
+      if(!data) {
+        throw new HttpException('User not found', 400);
+      }
       return { success: true, message: 'success', data };
     } catch (err) {
       throw new HttpException('Failed', 400);

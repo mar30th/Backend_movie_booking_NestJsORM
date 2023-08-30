@@ -33,10 +33,9 @@ export class TicketController {
 
   @Get('seat-list/:schedule_id')
   async getSeatListByScheduleID(
-    @Headers('access_token') access_token: string,
     @Param('schedule_id', ParseIntPipe) schedule_id: number
   ) {
-    return await this.ticketService.getSeatListByScheduleID(access_token, schedule_id)
+    return await this.ticketService.getSeatListByScheduleID(schedule_id)
   }
 
   @Post('create-schedule')

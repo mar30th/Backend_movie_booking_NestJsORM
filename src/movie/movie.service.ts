@@ -67,8 +67,7 @@ export class MovieService {
   // Post add movie
   async postMovie(
     access_token: string,
-    movie: CreateMovieDto,
-    imgFile: Express.Multer.File,
+    newMovie: CreateMovieDto,
   ) {
     try {
       const decodedToken = (await this.jwtService.decode(
@@ -80,30 +79,59 @@ export class MovieService {
       } else if (checkUser?.user_type !== 'admin') {
         throw new UnauthorizedException('Unauthorized');
       }
-      let { ...newMovie } = movie;
-      let image = '/public/movie.img/' + imgFile.filename;
+      const { name, trailer, description, release_date, hot, rating, now_showing, coming_soon } = newMovie;
       const checkMovie = await this.prisma.movie.findFirst({
         where: {
-          name: newMovie.name,
+          name,
         },
       });
+      
       if (!checkMovie) {
         const data = await this.prisma.movie.create({
           data: {
-            name: newMovie.name,
-            trailer: newMovie.trailer,
-            image,
-            description: newMovie.description,
-            release_date: newMovie.release_date,
-            rating: newMovie.rating,
-            hot: newMovie.hot,
-            now_showing: newMovie.now_showing,
-            coming_soon: newMovie.coming_soon,
+            name,
+            trailer,
+            image: null,
+            description,
+            release_date,
+            rating,
+            hot,
+            now_showing,
+            coming_soon,
           },
         });
         return { success: true, message: 'success', data };
+      } return { success: false, message: 'Movie already exits!' };
+    } catch (err) {
+      throw new HttpException('Failed', 400);
+    }
+  }
+
+  // Post upload movie img
+  async postUploadMovieImg(access_token: string, movie_img: Express.Multer.File, movie_id: number) {
+    try {
+      const decodedToken = (await this.jwtService.decode(
+        access_token.replace('Bearer ', ''),
+      )) as any;
+      const checkUser = decodedToken?.data;
+      if (!checkUser?.user_id) {
+        throw new UnauthorizedException('Invalid Token');
+      } else if (checkUser?.user_type !== 'admin') {
+        throw new UnauthorizedException('Unauthorized');
       }
-      return { success: false, message: 'Movie already exits!' };
+      let image = '/public/movie_img/' + movie_img.filename;
+      const data = await this.prisma.movie.update({
+        where: {
+          movie_id
+        }, data :{
+          image
+        }, select: {
+          movie_id: true,
+          name: true,
+          image: true,
+        }
+      })
+      return {success: true, message: "Upload image successfully", data}
     } catch (err) {
       throw new HttpException('Failed', 400);
     }
@@ -113,7 +141,6 @@ export class MovieService {
   async postUpdateMovie(
     access_token: string,
     dataUpdate?: UpdateMovieDto,
-    imgFile?: Express.Multer.File,
   ) {
     try {
       const decodedToken = (await this.jwtService.decode(
@@ -126,7 +153,6 @@ export class MovieService {
         throw new UnauthorizedException('Unauthorized');
       }
       let { ...data } = dataUpdate;
-      let image = 'public/movie.img/' + imgFile.filename;
       const checkMovie = await this.prisma.movie.findFirst({
         where: {
           movie_id: data.movie_id,
@@ -142,7 +168,6 @@ export class MovieService {
         data: {
           name: data?.name,
           trailer: data?.trailer,
-          image,
           description: data?.description,
           release_date: data?.release_date,
           rating: data?.rating,

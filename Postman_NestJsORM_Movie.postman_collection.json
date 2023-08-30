@@ -1,0 +1,1015 @@
+{
+	"info": {
+		"_postman_id": "8356c46b-6419-4a73-b430-bec48d6f987b",
+		"name": "Postman_NestJsORM_Movie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25802843",
+		"_collection_link": "https://crimson-station-600734.postman.co/workspace/API~d6f20b9c-2b53-4505-9531-66211d8004f5/collection/25802843-8356c46b-6419-4a73-b430-bec48d6f987b?action=share&source=collection_link&creator=25802843"
+	},
+	"item": [
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"full_name\": \"Thomas\",\n    \"email\": \"thomas@example.com\",\n    \"phone\": \"911\",\n    \"pass_word\": \"somerandompass\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"thomas@example.com\",\n    \"pass_word\": \"somerandompass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTEiLCJ1c2VyX3R5cGUiOiJSZWd1bGFyIn0sImlhdCI6MTY5MzE5OTMxMiwiZXhwIjoxNjkzMjAxMTEyfQ.tUMS62j4a0NoWWb8iUGIMRYTaRF3lwRCG55_iH6k-k0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/get-user-type",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"get-user-type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTEiLCJ1c2VyX3R5cGUiOiJSZWd1bGFyIn0sImlhdCI6MTY5MzE5OTMxMiwiZXhwIjoxNjkzMjAxMTEyfQ.tUMS62j4a0NoWWb8iUGIMRYTaRF3lwRCG55_iH6k-k0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/get-user-list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"get-user-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFindUser",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTEiLCJ1c2VyX3R5cGUiOiJSZWd1bGFyIn0sImlhdCI6MTY5MzE5OTMxMiwiZXhwIjoxNjkzMjAxMTEyfQ.tUMS62j4a0NoWWb8iUGIMRYTaRF3lwRCG55_iH6k-k0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/find-user/tho",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"find-user",
+						"tho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserInfo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzI5OTAzMCwiZXhwIjoxNjkzMzAwODMwfQ.R6qf8FAXeXh8-neMsHQEi-72JvvKt3pzDhly048pBvI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/get-info",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"get-info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserInfoById (Admin)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzM3NzgwNiwiZXhwIjoxNjkzMzc5NjA2fQ.N77CFldr3jta9_wQbhvUksu5tKLphjd_Q9erWJoku4E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/admin/get-info/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"admin",
+						"get-info",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostAddUser (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTEiLCJ1c2VyX3R5cGUiOiJBZG1pbiJ9LCJpYXQiOjE2OTMyMDE0ODIsImV4cCI6MTY5MzIwMzI4Mn0.k-IH1uazjJZ9IosQdCwjKcazPUzMJz2NejccmXHSTmM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"full_name\": \"Thomas 2\",\n    \"email\": \"thomas2@example.com\",\n    \"phone\": \"911\",\n    \"pass_word\": \"somerandompass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/admin/add-user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"admin",
+						"add-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostUpdateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTEiLCJ1c2VyX3R5cGUiOiJBZG1pbiJ9LCJpYXQiOjE2OTMyMDYzODksImV4cCI6MTY5MzIwODE4OX0.crBGf2Xy3zZD-TFmJmlDslzOGjsVYLSJLXfvLKOvZio",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\": \"9111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/user-update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"user-update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostUpdateUser (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTEiLCJ1c2VyX3R5cGUiOiJBZG1pbiJ9LCJpYXQiOjE2OTMyMDYzODksImV4cCI6MTY5MzIwODE4OX0.crBGf2Xy3zZD-TFmJmlDslzOGjsVYLSJLXfvLKOvZio",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_type\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/admin/update-user/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"admin",
+						"update-user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser (Admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTExIiwidXNlcl90eXBlIjoiYWRtaW4ifSwiaWF0IjoxNjkzMjEyMzE4LCJleHAiOjE2OTMyMTQxMTh9.q7ethXXMAXjUtaaJnjFDfx7VmmnD6EY4wsZjGfDbKBU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"email\": \"ab@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/admin/delete-user/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"admin",
+						"delete-user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBanner",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTExIiwidXNlcl90eXBlIjoiYWRtaW4ifSwiaWF0IjoxNjkzMjEyOTY1LCJleHAiOjE2OTMyMTQ3NjV9._v_huoWcGtp0OeEGFudrTfryZNUgTlffXquiLmi_5n4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movie/banner",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"banner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMovieLst",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MTEiLCJ1c2VyX3R5cGUiOiJBZG1pbiJ9LCJpYXQiOjE2OTMyMDYzODksImV4cCI6MTY5MzIwODE4OX0.crBGf2Xy3zZD-TFmJmlDslzOGjsVYLSJLXfvLKOvZio",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movie/movie-list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"movie-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFindMovieByName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImVtYWlsIjoidXNlcjdAZXhhbXBsZS5jb20iLCJmdWxsX25hbWUiOiJUaG9yIiwiYWdlIjoxOCwiYXZhdGFyIjoiYXZhdGFyNy5qcGcifSwiaWF0IjoxNjkwOTU1NzU5LCJleHAiOjE2OTA5NTc1NTl9.8H3G8n3ojx3YojTyjfLUzFn7lTIFntbsz66TTqAEXgY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movie/name/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"name",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFindMovieById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImVtYWlsIjoidXNlcjdAZXhhbXBsZS5jb20iLCJmdWxsX25hbWUiOiJUaG9yIiwiYWdlIjoxOCwiYXZhdGFyIjoiYXZhdGFyNy5qcGcifSwiaWF0IjoxNjkwOTU1NzU5LCJleHAiOjE2OTA5NTc1NTl9.8H3G8n3ojx3YojTyjfLUzFn7lTIFntbsz66TTqAEXgY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movie/movie-id/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"movie-id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostMovie (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImVtYWlsIjoidXNlcjdAZXhhbXBsZS5jb20iLCJmdWxsX25hbWUiOiJUaG9yIiwiYWdlIjoxOCwiYXZhdGFyIjoiYXZhdGFyNy5qcGcifSwiaWF0IjoxNjkwOTU1NzU5LCJleHAiOjE2OTA5NTc1NTl9.8H3G8n3ojx3YojTyjfLUzFn7lTIFntbsz66TTqAEXgY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie_id\": 2,\n    \"name\": \"Movie 4\",\n    \"trailer\": \"trailer2.mp4\",\n    \"image\": \"image2.jpg\",\n    \"description\": \"Description of Movie 2\",\n    \"release_date\": \"2023-08-15T00:00:00.000Z\",\n    \"rating\": 4,\n    \"hot\": false,\n    \"now_showing\": true,\n    \"coming_soon\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movie/post-movie?name=Movie 6&trailer=link youtube&description=Description of Movie 5&release_date=2023-08-15T00:00:00.000Z&rating=5&hot=true&now_showing=false&coming_soon=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"post-movie"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Movie 6"
+						},
+						{
+							"key": "trailer",
+							"value": "link youtube"
+						},
+						{
+							"key": "description",
+							"value": "Description of Movie 5"
+						},
+						{
+							"key": "release_date",
+							"value": "2023-08-15T00:00:00.000Z"
+						},
+						{
+							"key": "rating",
+							"value": "5"
+						},
+						{
+							"key": "hot",
+							"value": "true"
+						},
+						{
+							"key": "now_showing",
+							"value": "false"
+						},
+						{
+							"key": "coming_soon",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostUploadMovieImg (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzI5OTMxNiwiZXhwIjoxNjkzMzAxMTE2fQ.VLi1x0aH2thGuDE3F8p7R8bo4IhSlMdoGNtGy5lo8Jk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "movie_img",
+							"type": "file",
+							"src": "/Users/dongtran/Downloads/img/some_random_img2.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/movie/upload-movie-image/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"upload-movie-image",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostUpdateMovie (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzI5OTMxNiwiZXhwIjoxNjkzMzAxMTE2fQ.VLi1x0aH2thGuDE3F8p7R8bo4IhSlMdoGNtGy5lo8Jk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie_id\": 1,\n    \"name\": \"Movie 1.2\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movie/update-movie",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"update-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteMovie (Admin)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzI5OTMxNiwiZXhwIjoxNjkzMzAxMTE2fQ.VLi1x0aH2thGuDE3F8p7R8bo4IhSlMdoGNtGy5lo8Jk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie_id\": 1,\n    \"name\": \"Movie 1.1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movie/delete-movie/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie",
+						"delete-movie",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCinemaSystemsList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImVtYWlsIjoidXNlcjdAZXhhbXBsZS5jb20iLCJmdWxsX25hbWUiOiJUaG9yIiwiYWdlIjoxOCwiYXZhdGFyIjoiYXZhdGFyNy5qcGcifSwiaWF0IjoxNjkwOTU1NzU5LCJleHAiOjE2OTA5NTc1NTl9.8H3G8n3ojx3YojTyjfLUzFn7lTIFntbsz66TTqAEXgY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cinema/cinema-systems",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cinema",
+						"cinema-systems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCinemaSystemsByName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImVtYWlsIjoidXNlcjdAZXhhbXBsZS5jb20iLCJmdWxsX25hbWUiOiJUaG9yIiwiYWdlIjoxOCwiYXZhdGFyIjoiYXZhdGFyNy5qcGcifSwiaWF0IjoxNjkwOTU1NzU5LCJleHAiOjE2OTA5NTc1NTl9.8H3G8n3ojx3YojTyjfLUzFn7lTIFntbsz66TTqAEXgY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cinema/cinema-systems/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cinema",
+						"cinema-systems",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCinemaBySystemsId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImVtYWlsIjoidXNlcjdAZXhhbXBsZS5jb20iLCJmdWxsX25hbWUiOiJUaG9yIiwiYWdlIjoxOCwiYXZhdGFyIjoiYXZhdGFyNy5qcGcifSwiaWF0IjoxNjkwOTU1NzU5LCJleHAiOjE2OTA5NTc1NTl9.8H3G8n3ojx3YojTyjfLUzFn7lTIFntbsz66TTqAEXgY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cinema/cinox/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cinema",
+						"cinox",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSeatListByScheduleID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjUsImZ1bGxfbmFtZSI6IkpvaG4gQ2VuYSIsImVtYWlsIjoidXNlcjNAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjkxMSIsInVzZXJfdHlwZSI6IlJlZ3VsYXIifSwiaWF0IjoxNjkyODYyMzQwLCJleHAiOjE2OTI4NjQxNDB9.9GAi8F01LAaIdl78sm7XyAWsqaQvkxpYx39bxtSS8is",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ticket/seat-list/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"seat-list",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetScheduleByMovieId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjUsImZ1bGxfbmFtZSI6IkpvaG4gQ2VuYSIsImVtYWlsIjoidXNlcjNAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjkxMSIsInVzZXJfdHlwZSI6IlJlZ3VsYXIifSwiaWF0IjoxNjkyODYyMzQwLCJleHAiOjE2OTI4NjQxNDB9.9GAi8F01LAaIdl78sm7XyAWsqaQvkxpYx39bxtSS8is",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cinema/schedule/movie-id/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cinema",
+						"schedule",
+						"movie-id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookingTicket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzM3NDcwMiwiZXhwIjoxNjkzMzc2NTAyfQ.jb1arwRZPTSDZgS4dGo6ehbOzssjJmPtJy6w5d5VNBI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"schedule_id\": 1,\n  \"bookingList\": [\n    {\n      \"seat_id\": 1,\n      \"price\": 200\n    },\n    {\n        \"seat_id\": 2,\n        \"price\": 500\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ticket/booking",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSeatListByScheduleID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzM3NDcwMiwiZXhwIjoxNjkzMzc2NTAyfQ.jb1arwRZPTSDZgS4dGo6ehbOzssjJmPtJy6w5d5VNBI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"schedule_id\": 1,\n  \"bookingList\": [\n    {\n      \"seat_id\": 1,\n      \"price\": 200\n    },\n    {\n        \"seat_id\": 2,\n        \"price\": 500\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ticket/seat-list/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"seat-list",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostSchedule",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsImZ1bGxfbmFtZSI6IlRob21hcyIsImVtYWlsIjoidGhvbWFzQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5MSIsInVzZXJfdHlwZSI6ImFkbWluIn0sImlhdCI6MTY5MzM3NDcwMiwiZXhwIjoxNjkzMzc2NTAyfQ.jb1arwRZPTSDZgS4dGo6ehbOzssjJmPtJy6w5d5VNBI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"screen_id\": 2,\n    \"movie_id\": 1,\n    \"showtime\": \"2023-08-10T18:00:00Z\",\n    \"price\": 400\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ticket/create-schedule",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"create-schedule"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

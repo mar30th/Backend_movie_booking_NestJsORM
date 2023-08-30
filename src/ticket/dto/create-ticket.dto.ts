@@ -1,17 +1,24 @@
 import { ApiProperty } from "@nestjs/swagger";
 
+class Booking {
+  @ApiProperty()
+  seat_id: number;
+
+  @ApiProperty()
+  price: number;
+}
+
 export class CreateTicketDto {
   @ApiProperty()
   schedule_id: number;
 
-  @ApiProperty()
-  bookingList: [
-    {
-      seat_id: number;
-      price: number;
-    },
-  ];
+  @ApiProperty({ type: [Booking] }) // Định rõ kiểu dữ liệu là một mảng Booking
+  bookingList: Booking[];
 }
+
+
+
+
 
 export class Seat {
   @ApiProperty()

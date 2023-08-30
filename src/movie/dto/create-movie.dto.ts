@@ -1,13 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateMovieDto {
-  @ApiProperty()
   movie_id?: number;
   @ApiProperty()
   name: string;
   @ApiProperty()
   trailer: string;
-  @ApiProperty()
   image: string;
   @ApiProperty()
   description: string;
